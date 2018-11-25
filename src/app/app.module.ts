@@ -6,21 +6,21 @@ import { AppComponent } from './app.component';
 import { ListaComponent } from './lista/lista.component';
 import { HomeComponent } from './home/home.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
-import {AccordionModule} from 'primeng/accordion';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {TableModule} from 'primeng/table';
-import {DataTableModule} from 'primeng/datatable';
-import {OrderListModule} from 'primeng/orderlist';
+import { AccordionModule } from 'primeng/accordion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
+import { DataTableModule } from 'primeng/datatable';
+import { OrderListModule } from 'primeng/orderlist';
 import { DialogModule } from 'primeng/dialog';
 import { HttpClientModule } from '@angular/common/http';
-import { PessoaService } from './controller/services/pessoaService'
+import { PessoaService } from './controller/services/pessoaService';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaComponent,
     HomeComponent,
-    RelatoriosComponent,
+    RelatoriosComponent
   ],
   imports: [
     BrowserModule,
@@ -32,12 +32,9 @@ import { PessoaService } from './controller/services/pessoaService'
     OrderListModule,
     DialogModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
-  providers: [
-    PessoaService,
-    
-  ],
+  providers: [PessoaService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
