@@ -1,3 +1,7 @@
 <p>
   relatorios works!
 </p>
+<p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu>
+<p-chart type="pie" [data]="data"></p-chart>
+<button type="button" pButton (click)="update($event)"></button>
+<p-chart type="line" [data]="data"></p-chart>

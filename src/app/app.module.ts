@@ -14,13 +14,16 @@ import { OrderListModule } from 'primeng/orderlist';
 import { DialogModule } from 'primeng/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { PessoaService } from './controller/services/pessoaService';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { ChartModule } from 'primeng/chart';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaComponent,
     HomeComponent,
-    RelatoriosComponent
+    RelatoriosComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,9 @@ import { PessoaService } from './controller/services/pessoaService';
     OrderListModule,
     DialogModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TabMenuModule,
+    ChartModule,
   ],
   providers: [PessoaService],
   bootstrap: [AppComponent]
