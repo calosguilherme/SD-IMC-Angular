@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { PessoaService } from './controller/services/pessoaService';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ChartModule } from 'primeng/chart';
+import { ButtonModule } from 'primeng/button';
+import { ImcService } from './controller/services/imcService';
 
 
 @NgModule({
@@ -38,8 +40,10 @@ import { ChartModule } from 'primeng/chart';
     HttpClientModule,
     TabMenuModule,
     ChartModule,
+    ButtonModule,
+
   ],
-  providers: [PessoaService],
+  providers: [PessoaService, ImcService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

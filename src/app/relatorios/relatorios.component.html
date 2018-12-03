@@ -2,6 +2,9 @@
   relatorios works!
 </p>
 <p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu>
-<p-chart type="pie" [data]="data"></p-chart>
-<button type="button" pButton (click)="update($event)"></button>
-<p-chart type="line" [data]="data"></p-chart>
+
+<div class="ui-g" *ngIf="activeItem == items[0]">
+  <div class="ui-g-8">
+    <p-chart type="bar" [data]="data"></p-chart>
+  </div>
+</div>

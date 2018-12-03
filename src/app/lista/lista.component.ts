@@ -30,7 +30,7 @@ export class ListaComponent implements OnInit {
       { field: 'nome', header: 'Nome' },
       { field: 'datanascimento', header: 'Data de Nascimento' },
       { field: 'peso', header: 'Peso' },
-      { field: 'altura', header: 'altura' }
+      { field: 'altura', header: 'Altura' }
     ];
   }
 
@@ -42,8 +42,10 @@ export class ListaComponent implements OnInit {
 
   save() {
     const pessoas = [...this.pessoas];
+    let result;
     if (this.newPessoa) {
       pessoas.push(this.pessoa);
+      result = this.pessoaService.postPessoa(this.pessoa).subscribe()
     } else {
       pessoas[this.pessoas.indexOf(this.selectedPessoa)] = this.pessoa;
     }

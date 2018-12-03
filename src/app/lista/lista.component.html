@@ -61,11 +61,19 @@
                 <input pInputText id="peso" [(ngModel)]="pessoa.peso" />
             </div>
         </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="altura">Altura</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="altura" [(ngModel)]="pessoa.altura" />
+            </div>
+        </div>
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
-            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+            <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Apagar"></button>
+            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Salvar"></button>
         </div>
     </p-footer>
 </p-dialog>

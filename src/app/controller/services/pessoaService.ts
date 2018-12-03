@@ -10,4 +10,9 @@ export class PessoaService {
   getAllPessoa() {
     return this.http.get<Pessoa[]>(`https://sdbackend.herokuapp.com/pessoa`);
   }
+  postPessoa(pessoa: Pessoa) {
+    console.log(JSON.stringify(pessoa))
+    return this.http.post<Pessoa>(`https://sdbackend.herokuapp.com/pessoa`, JSON.stringify(pessoa));
+  }
+
 }
