@@ -1,79 +1,86 @@
-<p>
-  lista works!
-</p>
 <p-table [columns]="cols" [value]="pessoas" selectionMode="single" [(selection)]="selectedPessoa" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
-    <ng-template pTemplate="caption">
-        Lista de Pessoas
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field"></p-sortIcon>
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr [pSelectableRow]="rowData">
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="summary" let-rowData>
-        <div style="text-align:left">
-            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
-        </div>
-    </ng-template>
-</p-table>
-
-<p-dialog header="Informações da Pessoa" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="300">
-    <div class="ui-g ui-fluid" *ngIf="pessoa">
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="cpf">CPF</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="cpf" [(ngModel)]="pessoa.cpf" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="nome">Nome</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="nome" [(ngModel)]="pessoa.nome" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="datanascimento">Data de Nascimento</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="datanascimento" [(ngModel)]="pessoa.datanascimento" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="peso">Peso</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="peso" [(ngModel)]="pessoa.peso" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="altura">Altura</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="altura" [(ngModel)]="pessoa.altura" />
-            </div>
-        </div>
+  <ng-template pTemplate="caption">
+    Lista de Pessoas
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+        {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align:left">
+      <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Apagar"></button>
-            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Salvar"></button>
-        </div>
-    </p-footer>
+  </ng-template>
+</p-table>
+<p-dialog header="Informações da Pessoa" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="300">
+  <div class="ui-g ui-fluid" *ngIf="pessoa">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="cpf">CPF</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="cpf" [(ngModel)]="pessoa.cpf" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="nome">Nome</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="nome" [(ngModel)]="pessoa.nome" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="datanascimento">Data de Nascimento</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="datanascimento" [(ngModel)]="pessoa.datanascimento" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="peso">Peso</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="peso" [(ngModel)]="pessoa.peso" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="altura">Altura</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="altura" [(ngModel)]="pessoa.altura" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="sexo">Sexo</label>
+      </div>
+      <div class="ui-g-8">
+        <form action="#">
+          <label><input name="sexo" type="radio" [(ngModel)]="pessoa.sexo" value="Masculino"><span>Masculino</span></label> <br>
+          <label><input name="sexo" type="radio" [(ngModel)]="pessoa.sexo" value="Feminino"><span>Feminino</span></label><br>
+          </form>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Apagar"></button>
+      <button type="button" pButton icon="fa fa-check" (click)="save()" label="Salvar"></button>
+    </div>
+  </p-footer>
 </p-dialog>

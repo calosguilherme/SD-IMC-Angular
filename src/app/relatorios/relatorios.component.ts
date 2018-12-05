@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Imc } from '../model/imc.model';
 import { ImcService } from '../controller/services/imcService';
@@ -12,7 +12,11 @@ export class RelatoriosComponent implements OnInit {
   items: MenuItem[];
   activeItem: MenuItem;
   data: any;
+  data2: any;
+  m: number = 0;
+  h: number = 0;
   imcs: Imc[];
+  @ViewChild('menuItems') menu: MenuItem[];
 
   constructor(private imcService: ImcService) {
 
@@ -20,26 +24,69 @@ export class RelatoriosComponent implements OnInit {
 
   ngOnInit() {
     this.imcService.getImc().subscribe(imcs => {
-      console.log(imcs )
+      console.log(imcs)
       this.imcs = imcs
+      this.m = this.contMulher()
+      this.h = this.contHomem()
       this.data = this.calculaGrafico(this.imcs)
+      this.data2 = this.geraRosca()
+
     })
 
     this.items = [
-      { label: 'Stats', icon: 'fa fa-fw fa-bar-chart' },
-      { label: 'Calendar', icon: 'fa fa-fw fa-calendar' },
-      { label: 'Documentation', icon: 'fa fa-fw fa-book' },
-      { label: 'Support', icon: 'fa fa-fw fa-support' },
-      { label: 'Social', icon: 'fa fa-fw fa-twitter' }
+      { label: 'Grafico de Situação', icon: 'fa fa-fw fa-bar-chart' },
+      { label: 'Grafico de Sexo dos Paricipantes', icon: 'fa fa-fw fa-bar-chart' },
+
     ];
-
-    let i = 30
-
-
     this.activeItem = this.items[0];
-  
+   
   }
 
+
+
+  activateMenu() {
+    this.activeItem = this.menu['activeItem'];
+  }
+
+  print() {
+    console.log(this.activeItem)
+  }
+
+  geraRosca() {
+    return ({
+      labels: ['Mulher', 'Homem',],
+      datasets: [
+        {
+          data: [this.m, this.h],
+          backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+          ],
+          hoverBackgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+          ]
+        }]
+    };)
+
+  }
+
+  contMulher() {
+    let i = 0
+    for (let imc of this.imcs)
+      if (imc.pessoa.sexo == "Feminino")
+        i++
+    return(i)
+  }
+  contHomem() {
+    let i = 0
+    for (let imc of this.imcs) {
+      console.log(imc.pessoa.sexo)
+      if (imc.pessoa.sexo == "Masculino")
+        i++
+    }
+    return(i)
+  }
 
   calculaGrafico(imcs) {
     let mtMagro, magro, normal, gordo, obesoi, obesoii, obesoiii;

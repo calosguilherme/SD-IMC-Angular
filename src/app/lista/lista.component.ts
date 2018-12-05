@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pessoa } from '../model/pessoa.model.js';
 import { PessoaService } from '../controller/services/pessoaService';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -18,7 +19,9 @@ export class ListaComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private pessoaService: PessoaService) {}
+  constructor(
+    private pessoaService: PessoaService,
+    private router: Router) { }
 
   ngOnInit() {
     this.pessoaService
@@ -31,6 +34,7 @@ export class ListaComponent implements OnInit {
       { field: 'datanascimento', header: 'Data de Nascimento' },
       { field: 'peso', header: 'Peso' },
       { field: 'altura', header: 'Altura' }
+      { field: 'sexo', header: 'Sexo' }
     ];
   }
 
@@ -45,7 +49,9 @@ export class ListaComponent implements OnInit {
     let result;
     if (this.newPessoa) {
       pessoas.push(this.pessoa);
-      result = this.pessoaService.postPessoa(this.pessoa).subscribe()
+      result = this.pessoaService.postPessoa(this.pessoa)
+        .subscribe(dados => console.log(dados))
+      this.router.navigate(['/lista'])
     } else {
       pessoas[this.pessoas.indexOf(this.selectedPessoa)] = this.pessoa;
     }

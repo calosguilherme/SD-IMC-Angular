@@ -6,5 +6,6 @@ export class Pessoa {
     cpf: String,
     peso: number,
     altura: number,
+    sexo: String,
   ) {}
 }

@@ -1,10 +1,17 @@
 <p>
   relatorios works!
 </p>
-<p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu>
+<p-tabMenu #menuItems [model]="items" [activeItem]="items[0]" (click)="activateMenu()"></p-tabMenu>
 
 <div class="ui-g" *ngIf="activeItem == items[0]">
   <div class="ui-g-8">
     <p-chart type="bar" [data]="data"></p-chart>
   </div>
 </div>
+
+<div class="ui-g" *ngIf="activeItem == items[1]">
+  <div class="ui-g-8">
+    <p-chart type="doughnut" [data]="data2"></p-chart>
+  </div>
+</div>
+
