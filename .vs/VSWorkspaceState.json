@@ -4,7 +4,9 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\controller",
+    "\\src\\app\\controller\\services",
     "\\src\\app\\lista",
+    "\\src\\app\\model",
     "\\src\\app\\relatorios"
   ],
   "SelectedNode": "\\src\\app\\relatorios\\relatorios.component.ts",

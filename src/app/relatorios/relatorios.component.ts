@@ -16,16 +16,29 @@ export class RelatoriosComponent implements OnInit {
   m: number = 0;
   h: number = 0;
   imcs: Imc[];
+  newImcs: Imc[];
   @ViewChild('menuItems') menu: MenuItem[];
 
   constructor(private imcService: ImcService) {
-
   }
 
   ngOnInit() {
     this.imcService.getImc().subscribe(imcs => {
       console.log(imcs)
       this.imcs = imcs
+      this.newImcs = this.imcs.sort(function (a, b) { //ORDENA POR DATA
+        if (a.data > b.data) {
+          return 1;
+        }
+        if (a.data < b.data) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+
+
+      this.imcs = this.removeRepetido(this.imcs)
       this.m = this.contMulher()
       this.h = this.contHomem()
       this.data = this.calculaGrafico(this.imcs)
@@ -42,7 +55,18 @@ export class RelatoriosComponent implements OnInit {
    
   }
 
-
+  removeRepetido(imcs: Imc[]) {
+    let oldImc: Imc[] = Object.assign([{}], imcs)
+    let j = 0
+    for (let j = 0; j < oldImc.length; j++) {
+      for (let i = j; i + 1 < oldImc.length; i++) {
+        if (oldImc[j].pessoa.idpessoa == oldImc[i + 1].pessoa.idpessoa) {
+          oldImc.splice(i + 1, 1)
+        }
+      }
+    }
+    return oldImc
+  }
 
   activateMenu() {
     this.activeItem = this.menu['activeItem'];
@@ -67,7 +91,7 @@ export class RelatoriosComponent implements OnInit {
             "#36A2EB",
           ]
         }]
-    };)
+    });
 
   }
 
@@ -81,7 +105,6 @@ export class RelatoriosComponent implements OnInit {
   contHomem() {
     let i = 0
     for (let imc of this.imcs) {
-      console.log(imc.pessoa.sexo)
       if (imc.pessoa.sexo == "Masculino")
         i++
     }
@@ -92,7 +115,6 @@ export class RelatoriosComponent implements OnInit {
     let mtMagro, magro, normal, gordo, obesoi, obesoii, obesoiii;
     mtMagro = magro = normal = gordo = obesoi = obesoii = obesoiii = 0
     for (let imc of imcs) {
-      console.log(imc.valorimc)
       if (imc.valorimc < 17)
         mtMagro++
       if (imc.valorimc > 16 && imc.valorimc < 18.50)

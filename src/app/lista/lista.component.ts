@@ -54,6 +54,9 @@ export class ListaComponent implements OnInit {
       this.router.navigate(['/lista'])
     } else {
       pessoas[this.pessoas.indexOf(this.selectedPessoa)] = this.pessoa;
+      result = this.pessoaService.updatePessoa(this.pessoa)
+        .subscribe(dados => console.log(dados))
+      this.router.navigate(['/lista'])
     }
     this.pessoas = pessoas;
     this.pessoa = null;
@@ -61,8 +64,12 @@ export class ListaComponent implements OnInit {
   }
 
   delete() {
+    let result;
     const index = this.pessoas.indexOf(this.selectedPessoa);
     this.pessoas = this.pessoas.filter((val, i) => i !== index);
+    result = this.pessoaService.deletePessoa(this.pessoa)
+      .subscribe(dados => console.log(dados))
+    this.router.navigate(['/lista'])
     this.pessoa = null;
     this.displayDialog = false;
   }

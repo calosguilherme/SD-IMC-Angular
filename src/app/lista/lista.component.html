@@ -71,8 +71,8 @@
       </div>
       <div class="ui-g-8">
         <form action="#">
-          <label><input name="sexo" type="radio" [(ngModel)]="pessoa.sexo" value="Masculino"><span>Masculino</span></label> <br>
-          <label><input name="sexo" type="radio" [(ngModel)]="pessoa.sexo" value="Feminino"><span>Feminino</span></label><br>
+          <label><input name="sexo" type="radio" [(ngModel)]="pessoa.sexo" (checked)="pessoa.sexo == Masculino" value="Masculino"><span>Masculino</span></label> <br>
+          <label><input name="sexo" type="radio" [(ngModel)]="pessoa.sexo" (checked)="pessoa.sexo == Feminino" value="Feminino"><span>Feminino</span></label><br>
           </form>
       </div>
     </div>
