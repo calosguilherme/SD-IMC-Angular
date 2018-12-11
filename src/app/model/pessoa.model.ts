@@ -1,11 +1,10 @@
 export class Pessoa {
-  constructor(
-    idpessoa: number,
-    nome: String,
-    datanascimento: String,
-    cpf: String,
-    peso: number,
-    altura: number,
-    sexo: String,
-  ) {}
+  idpessoa: number;
+  nome: String;
+  datanascimento: String;
+  peso: number;
+  altura: number;
+  sexo: String;
+  cpf: String;
+  constructor() { }
 }

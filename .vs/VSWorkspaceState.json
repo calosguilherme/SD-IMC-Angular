@@ -9,6 +9,6 @@
     "\\src\\app\\model",
     "\\src\\app\\relatorios"
   ],
-  "SelectedNode": "\\src\\app\\relatorios\\relatorios.component.ts",
+  "SelectedNode": "\\src\\app\\controller\\services\\pessoaService.ts",
   "PreviewInSolutionExplorer": false
 }

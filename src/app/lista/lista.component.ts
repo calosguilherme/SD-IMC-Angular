@@ -33,14 +33,14 @@ export class ListaComponent implements OnInit {
       { field: 'nome', header: 'Nome' },
       { field: 'datanascimento', header: 'Data de Nascimento' },
       { field: 'peso', header: 'Peso' },
-      { field: 'altura', header: 'Altura' }
+      { field: 'altura', header: 'Altura' },
       { field: 'sexo', header: 'Sexo' }
     ];
   }
 
   showDialogToAdd() {
     this.newPessoa = true;
-    this.pessoa = {};
+    this.pessoa = new Pessoa;
     this.displayDialog = true;
   }
 
@@ -81,7 +81,7 @@ export class ListaComponent implements OnInit {
   }
 
   clonePessoa(p: Pessoa): Pessoa {
-    const pessoa = {};
+    const pessoa = new Pessoa;
     // tslint:disable-next-line:forin
     for (const props in p) {
       pessoa[props] = p[props];

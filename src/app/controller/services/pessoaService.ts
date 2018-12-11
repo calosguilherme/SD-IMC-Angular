@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
-import { Pessoa } from '../../model/pessoa.model';
+import { Pessoa } from 'src/app/model/pessoa.model';
+
+
 
 
 @Injectable()
