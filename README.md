@@ -69,8 +69,8 @@ Nesse caso só será criado um container de Back, você terá que repetir o proc
 
 ## Preparando o Front
 Primeiro baixe esse projeto, em seguida acesse a pasta SRC/APP/Controller/Services nos dois arquivos que tem, altere o IP do service para o IP do host inserido no balance. Após isso dentro da pasta do projeto execute o comando. (Precisa do NodeJS)
- <br> ```npm install
-  ng serve``` <br>
+ <br> ```npm install```<br>
+  <br>```ng serve``` <br>
 
 Aplicação está pronta para uso
 
