@@ -5,22 +5,22 @@
 
 ## Instalando e configurando o Rancher e Containers
 Digite o seguinte comando para 'criar' um container com o Rancher Server:
-	docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
+   <br> ```docker run -d --restart=unless-stopped -p 8080:8080 rancher/server```<br>
 Após isso, digite o seguinte comando para 'criar um segundo container que sera usado como host no Rancher:
-  docker run --privileged --name some-docker2 -d docker:stable-dind
+   <br> ```docker run --privileged --name some-docker2 -d docker:stable-dind```<br>
 Em seguida rode o comando:
-                          docker ps
+                  <br>        ```docker ps```<br>
 Ele irá retornar todos os containers rodando e seus Ids, anote o id do segundo container o com nome some-docker2 e rode o seguinte comando:
-                          docker inpect <<IdDoContainer>>
+                         <br> ```docker inpect <<IdDoContainer>>``` <br>
 Anote o Ipadress que o comando retorna. Abra o Rancher no navegador, IP:8080, esse ip caso não tenha você pode conseguir da mesma forma. Clique em INFRASTRUCTURE e em Add Host, após isso informe o IP do segundo container criado e ele irá gerar uma linha de comando como a seguir:
-                          docker run -e CATTLE_AGENT_IP="SeuIpDoSegundoContainer"  --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.11 http://172.17.0.2:8080/v1/scripts/5E818F8A4554FC6C4605:1514678400000:ZNipvYOBURhAKOSVZ0WCrqjsk
+                          <br> ```docker run -e CATTLE_AGENT_IP="SeuIpDoSegundoContainer"  --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.11 http://172.17.0.2:8080/v1/scripts/5E818F8A4554FC6C4605:1514678400000:ZNipvYOBURhAKOSVZ0WCrqjsk```<br>
 
 Utilize o gerado pelo seu rancher em vez de copiar o daqui, caso tenha alguma duvida pode seguir esse passo a passo [AQUI](https://onebitcode.com/o-que-e-e-como-funciona-o-rancher/)
 
 Após isso crie os Stacks, 1 para o Balancer e quantos quiser para o Back. para o Back você pode adicionar o seguinte
 
 Composer Docker:
-            version: '2'
+   <br>```         version: '2'
           services:
             carlos-back:
               image: calosguilherme/sd
@@ -30,19 +30,19 @@ Composer Docker:
               - 3000:3000/tcp
               labels:
                 io.rancher.container.pull_image: always
-                io.rancher.scheduler.global: 'true'
+                io.rancher.scheduler.global: 'true'```<br>
 
-Compose Rancher - 
-              version: '2'
+Compose Rancher: 
+            <br>```  version: '2'
               services:
                 carlos-back:
-                  start_on_create: true
+                  start_on_create: true```<br>
 
 Para o Balancer você pode adicionar o seguinte compose
 
 
 Compose Rancher - Lembrando de alterar o hostname pelo ip do seu HOST
-                  version: '2'
+         <br> ```        version: '2'
                   services:
                     balancer:
                       start_on_create: true
@@ -63,14 +63,14 @@ Compose Rancher - Lembrando de alterar o hostname pelo ip do seu HOST
                         unhealthy_threshold: 3
                         initializing_timeout: 60000
                         interval: 2000
-                        reinitializing_timeout: 60000
+                        reinitializing_timeout: 60000``` <br>
 
 Nesse caso só será criado um container de Back, você terá que repetir o processo de criação de Back pra quantos mais desejar, já o balancer será necessário clicar nós 3 pontinhos e ir em UPGRADE pra adicionar manualmente os outros Back. feito isso a parte de Container e back está terminada.
 
 ## Preparando o Front
 Primeiro baixe esse projeto, em seguida acesse a pasta SRC/APP/Controller/Services nos dois arquivos que tem, altere o IP do service para o IP do host inserido no balance. Após isso dentro da pasta do projeto execute o comando. (Precisa do NodeJS)
-  npm install
-  ng serve
+ <br> ```npm install
+  ng serve``` <br>
 
 Aplicação está pronta para uso
 
